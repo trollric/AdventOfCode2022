@@ -16,25 +16,26 @@ if __name__ == '__main__':
         # Add the lines to an array cleaning the \n from the entries.
         [calory_array.append(line.replace('\n', '')) for line in file.readlines()]
 
-    # Step through the lines and add until a blank line is found
-    max_calories = 0
-    temp_calories = 0
+
+    # Step through the lines and append the elves values onto the elf
+    # array.
+    calories = 0
+    elf_calories = []
     for line in calory_array:
         if len(line) > 0:
             # If the line is not blank add the numbers a single elf carries.
-            temp_calories += int(line)
+            calories += int(line)
         else:
-            # If the line is blank test if the current elves total calories outweighs the previous
-            # Top calories.
-            if temp_calories > max_calories:
-                max_calories = temp_calories
+            # Append the elves total onto the elf array.
+            elf_calories.append(calories)
+            # Reset calories
+            calories = 0
 
-            # Reset temp_calories
-            temp_calories = 0
+    # Finally catch the last elf's in the list and append to the array
+    elf_calories.append(calories)
 
-    # Finally catch the last elf's in the list and check if he carries more calories.
-    if temp_calories > max_calories:
-        max_calories = temp_calories
+    # Sort the list with the highest number at the firs tposition.
+    sorted_elf_calories = sorted(elf_calories, reverse=True)
 
-    # Print the result.
-    print(max_calories)
+    
+    #print(max_calories)
