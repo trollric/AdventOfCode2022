@@ -33,7 +33,7 @@ def point_calculator(player_shape : str, opponent_shape : str) -> int:
     Returns:
         int: The total amount of points
     """
-
+    
     # Determine victor.
     victor = determine_victory(player_shape, opponent_shape)
 
@@ -56,6 +56,55 @@ def point_calculator(player_shape : str, opponent_shape : str) -> int:
 
     # Return points.
     return points
+
+
+def ensure_victor(player_desired_outcome : str, opponent_shape : str) -> str:
+    """Takes a player desired outcome of Rock, Paper, Scissors and returns
+    the player shape they need to use to aquire the desired outcome.
+
+    A: Rock
+    B: Paper
+    C: Scissors
+
+    X: Rock
+    Y: Paper
+    Z: Scissors
+
+    Args:
+        player_desired_outcome (str): win, draw, loss
+        opponent_shape (str): A, B, C
+
+    Returns:
+        str: X, Y, Z
+    """
+
+    player_shape = ''
+    opponent_shape = opponent_shape.lower()
+    if player_desired_outcome == 'win':
+        if opponent_shape == 'a':
+            player_shape = 'Y'
+        elif opponent_shape == 'b':
+            player_shape = 'Z'
+        elif opponent_shape == 'c':
+            player_shape = 'X'
+
+    if player_desired_outcome == 'draw':
+        if opponent_shape == 'a':
+            player_shape = 'X'
+        elif opponent_shape == 'b':
+            player_shape = 'Y'
+        elif opponent_shape == 'c':
+            player_shape = 'Z'
+
+    if player_desired_outcome == 'lose':
+        if opponent_shape == 'a':
+            player_shape = 'Z'
+        elif opponent_shape == 'b':
+            player_shape = 'X'
+        elif opponent_shape == 'c':
+            player_shape = 'Y'
+
+    return player_shape
 
 
 def determine_victory(player_shape : str, opponent_shape : str) -> str:
@@ -84,6 +133,7 @@ def determine_victory(player_shape : str, opponent_shape : str) -> str:
             victor = 'win'
         elif player_shape.lower() == 'z':
             victor = 'loss'
+
     if opponent_shape.lower() == 'b':
         if player_shape.lower() == 'x':
             victor = 'loss'
@@ -91,6 +141,7 @@ def determine_victory(player_shape : str, opponent_shape : str) -> str:
             victor = 'draw'
         elif player_shape.lower() == 'z':
             victor = 'win'
+            
     if opponent_shape.lower() == 'c':
         if player_shape.lower() == 'x':
             victor = 'win'
@@ -115,6 +166,17 @@ if __name__ == '__main__':
         # Get player and opponents strategy.
         opponent, player = round.split(' ')
     
+        # Decide if we wish to win, lose or score a draw.
+        if player.lower() == 'x':
+            player = 'lose'
+        elif player.lower() == 'y':
+            player = 'draw'
+        elif player.lower() == 'z':
+            player = 'win'
+        
+        # Decide what shape to use.
+        player = ensure_victor(player, opponent)
+
         # Add points for the strategy.
         total_points += point_calculator(player, opponent)
     
