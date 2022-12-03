@@ -27,3 +27,16 @@ In case the Elves get hungry and need extra snacks, they need to know which Elf 
 Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
 """
 
+
+
+# Open the file.
+
+# set variable to hold the maximum found calories and temp calories.
+
+# Read until a line contains a blank space.
+#   add all lines into a temp
+
+# Check if the temp us highter than max
+    # if it is higher than max replace max with the current temp.
+
+# print the answer.
