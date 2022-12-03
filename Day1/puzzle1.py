@@ -28,15 +28,32 @@ Find the Elf carrying the most Calories. How many total Calories is that Elf car
 """
 
 
+if __name__ == '__main__':
+    # Open the file
+    calory_array = []
+    with open('Day1/calories.txt') as file:
+        # Add the lines to an array cleaning the \n from the entries.
+        [calory_array.append(line.replace('\n', '')) for line in file.readlines()]
 
-# Open the file.
+    # Step through the lines and add until a blank line is found
+    max_calories = 0
+    temp_calories = 0
+    for line in calory_array:
+        if len(line) > 0:
+            # If the line is not blank add the numbers a single elf carries.
+            temp_calories += int(line)
+        else:
+            # If the line is blank test if the current elves total calories outweighs the previous
+            # Top calories.
+            if temp_calories > max_calories:
+                max_calories = temp_calories
 
-# set variable to hold the maximum found calories and temp calories.
+            # Reset temp_calories
+            temp_calories = 0
 
-# Read until a line contains a blank space.
-#   add all lines into a temp
+    # Finally catch the last elf's in the list and check if he carries more calories.
+    if temp_calories > max_calories:
+        max_calories = temp_calories
 
-# Check if the temp us highter than max
-    # if it is higher than max replace max with the current temp.
-
-# print the answer.
+    # Print the result.
+    print(max_calories)
