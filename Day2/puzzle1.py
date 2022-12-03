@@ -15,6 +15,16 @@ Loss = 0
 
 
 def point_calculator(player_shape : str, opponent_shape : str) -> int:
+    """Takes a player rock, paper, scissor strategy from the player and their opponents
+    perspective and returns the total amount of points granted.
+
+    Args:
+        player_shape (str): X, Y or Z
+        opponent_shape (str): A, B or C
+
+    Returns:
+        int: The total amount of points
+    """
     # Determine victor and add points.
 
     # Add the value of the player_shape
