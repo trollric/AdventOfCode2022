@@ -104,9 +104,18 @@ def determine_victory(player_shape : str, opponent_shape : str) -> str:
 
 if __name__ == '__main__':
     # Read lines
-
-    # Clean the data
-
+    lines = []
+    with open('Day2/strategy_guide.txt') as file:
+        # Append and clean the data.
+        [lines.append(line.strip()) for line in file.readlines()]
+    
     # Loop through each game
-        # Var +=  Send to a point calculator returning points.
-    pass
+    total_points = 0
+    for round in lines:
+        # Get player and opponents strategy.
+        opponent, player = round.split(' ')
+    
+        # Add points for the strategy.
+        total_points += point_calculator(player, opponent)
+    
+    print(total_points)
