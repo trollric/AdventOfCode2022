@@ -8,6 +8,7 @@ In the example above, the top three Elves are the fourth Elf (with 24000 Calorie
 Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
 """
 
+CHECK_TOP_ELVES = 3
 
 if __name__ == '__main__':
     # Open the file
@@ -36,6 +37,8 @@ if __name__ == '__main__':
 
     # Sort the list with the highest number at the firs tposition.
     sorted_elf_calories = sorted(elf_calories, reverse=True)
+    sum_top_elves = 0
+    for index in range(CHECK_TOP_ELVES):
+        sum_top_elves += sorted_elf_calories[index]
 
-    
-    #print(max_calories)
+    print(sum_top_elves)
